@@ -1,1 +1,10 @@
 <h1>Homepage</h1>
+
+<div class="article-list">
+{{#articles}}
+	<article>
+		<a href="/article/{{getSlug}}"><img src="/images/{{getImage}}" alt="yoga"></a>
+		<h2><a href="/article/{{getSlug}}">{{getName}}</a></h2>
+	</article>
+{{/articles}}
+</div>
