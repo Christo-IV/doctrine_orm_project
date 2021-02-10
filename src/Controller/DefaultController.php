@@ -7,6 +7,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 
 class DefaultController extends Controller
 {
+	// HomepageDQL
     public function homepage(Request $request, Response $response)
     {
     	$dql = "SELECT a FROM App\Entity\Article a
@@ -22,6 +23,7 @@ class DefaultController extends Controller
         ]);
     }
 
+    // HomepageAll
     public function homepageAll(Request $request, Response $response)
     {
     	$articles = $this->ci->get('db')->getRepository('App\Entity\Article')->findBy([], [
