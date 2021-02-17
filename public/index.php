@@ -28,7 +28,9 @@ $app->get('/', '\App\Controller\DefaultController:homepage');
 $app->get('/admin', '\App\Controller\AdminController:view');
 $app->any('/admin/create', '\App\Controller\AdminController:create');
 $app->any('/admin/{id}', '\App\Controller\AdminController:edit');
+//    get?
 $app->any('/article/{slug}', '\App\Controller\ArticleController:view');
+$app->get('/author/{id}', '\App\Controller\AuthorController:author');
 
 // finish
 $app->run();
