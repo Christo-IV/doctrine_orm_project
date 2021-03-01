@@ -21,24 +21,28 @@ class AdminController extends Controller
             'articles' => $articles
         ]);
     }
-/*
-     public function create(Request $request, Response $response, $args = [])
+
+    public function create(Request $request, Response $response, $args = [])
     {
-        $article = $this->ci->get('db')->find('App\Entity\Article', $args['id']);
+        $article = new Article;
 
         if ($request->isPost()) {
             $article->setName($request->getParam('name'));
             $article->setSlug($request->getParam('slug'));
             $article->setImage($request->getParam('image'));
             $article->setBody($request->getParam('body'));
+            $article->setPublished(new \DateTime);
+
+            $this->ci->get('db')->persist($article);
+            $this->ci->get('db')->flush();
+
+            return $response->withRedirect('/admin');
         }
 
-        $this->ci->get('db')->persist($article);
-        $this->ci->get('db')->flush();
-
-        return $this->renderPage($response, 'admin/edit.html', [
+        return $this->renderPage($response, 'admin/create.html', [
             'article' => $article
-        ]);*/
+        ]);
+    }
 
     public function edit(Request $request, Response $response, $args = [])
     {
