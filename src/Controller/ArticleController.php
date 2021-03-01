@@ -22,7 +22,10 @@ class ArticleController extends Controller
 
     	$article = $query->getSingleResult();
 
-    	return $this->renderPage($response, 'article.html', ['article' => $article]);
+    	return $this->renderPage($response, 'article.html', [
+            'article' => $article,
+            'tags' => $article->getTags()
+        ]);
     }
 
     // View with repository
