@@ -53,6 +53,14 @@ class AdminController extends Controller
         }
 
         if ($request->isPost()) {
+
+            if($request->getParam('action') =='delete') {
+                $this->ci->get('db')->remove($article);
+                $this->ci->get('db')->flush();
+
+                return $response->withRedirect('/admin');
+            }
+
             $article->setName($request->getParam('name'));
             $article->setSlug($request->getParam('slug'));
             $article->setImage($request->getParam('image'));
@@ -60,10 +68,11 @@ class AdminController extends Controller
             $article->setAuthor(
                 $this->ci->get('db')->find('App\Entity\Author', $request->getParam('author'))
             );
+
+            $this->ci->get('db')->persist($article);
+            $this->ci->get('db')->flush();
         }
 
-        $this->ci->get('db')->persist($article);
-        $this->ci->get('db')->flush();
 
         $authors = $this->ci->get('db')->getRepository('App\Entity\Author')->findBy([],[
             'name' => 'ASC'
