@@ -32,7 +32,7 @@ $app->any('/admin/{id}', '\App\Controller\AdminController:edit');
 $app->any('/article/{slug}', '\App\Controller\ArticleController:view');
 $app->get('/author/{id}', '\App\Controller\AuthorController:author');
 $app->get('/tags', '\App\Controller\TagController:tags');
-$app->get('/tag/{id}', '\App\Controller\TagController: ??? ');
+$app->get('/tag/{id}', '\App\Controller\TagController:tag');
 
 // finish
 $app->run();

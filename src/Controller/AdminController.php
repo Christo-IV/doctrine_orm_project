@@ -67,21 +67,37 @@ class AdminController extends Controller
 
         return $this->renderPage($response, 'admin/edit.html', [
             'article' => $article,
-            'authors' => $this->authorDropdown($authors, $article)
+            'authors' => $this->authorDropdown($authors, $article),
+            //'tags' => $this->tagDropdown()
         ]);
     }
 
     private function authorDropdown($authors, $article) {
-        $options = [];
+        $aOptions = [];
 
         foreach ($authors as $author) {
-            $options[] = sprintf(
+            $aOptions[] = sprintf(
                 '<option value="%s" "%s">%s</option>',
                 $author->getId(),
                 ($author == $article->getAuthor()) ? 'selected' : '',
                 $author->getName()
             );
         }
-        return implode($options);
+        return implode($aOptions);
+    }
+
+    private function tagDropdown() {
+        $tags = $this->ci->get('db')->getRepository('App\Entity\Tag')->findBy([], ['name' => 'ASC']);
+        $tOptions = [];
+
+        foreach ($tags as $tag) {
+            $tOptions[] = sprintf(
+                '<option value="%s" %s>%s</option>',
+                $tag->getId(),
+                ($tag == $article->getTag()) ? 'selected' : '',
+                $tag->getName()
+            );
+        }
+        return implode($tOptions);
     }
 }
