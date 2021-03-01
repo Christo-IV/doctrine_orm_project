@@ -13,7 +13,6 @@ class Article {
 	* @Column(type="integer")
 	* @Id
 	* @GeneratedValue
-	* @OneToMany(targetEntity="ArticleTags")
 	*/
 	private  $id;
 	/**
