@@ -8,7 +8,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Exception\HttpNotFoundException;
 
-class AdminController extends Controller
+class ArticleAdminController extends Controller
 {
      
     public function view(Request $request, Response $response)
@@ -17,7 +17,7 @@ class AdminController extends Controller
             'published' => 'DESC'
         ]);
 
-        return $this->renderPage($response, 'admin/view.html', [
+        return $this->renderPage($response, 'admin/article/view.html', [
             'articles' => $articles
         ]);
     }
@@ -36,10 +36,10 @@ class AdminController extends Controller
             $this->ci->get('db')->persist($article);
             $this->ci->get('db')->flush();
 
-            return $response->withRedirect('/admin');
+            return $response->withRedirect('/admin/article');
         }
 
-        return $this->renderPage($response, 'admin/create.html', [
+        return $this->renderPage($response, 'admin/article/create.html', [
             'article' => $article
         ]);
     }
@@ -58,7 +58,7 @@ class AdminController extends Controller
                 $this->ci->get('db')->remove($article);
                 $this->ci->get('db')->flush();
 
-                return $response->withRedirect('/admin');
+                return $response->withRedirect('/admin/article');
             }
 
             $article->setName($request->getParam('name'));
@@ -78,7 +78,7 @@ class AdminController extends Controller
             'name' => 'ASC'
         ]);
 
-        return $this->renderPage($response, 'admin/edit.html', [
+        return $this->renderPage($response, 'admin/article/edit.html', [
             'article' => $article,
             'authors' => $this->authorDropdown($authors, $article),
             //'tags' => $this->tagDropdown()

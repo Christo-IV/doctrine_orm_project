@@ -40,14 +40,14 @@ class Article {
 	*/
 	private $author;
 	/**
-	* @ManyToMany(targetEntity="Tag", cascade={"persist"})
+	* @ManyToMany(targetEntity="Tag", inversedBy="articles", cascade={"persist"})
 	* @JoinTable(name="article_tags")
 	* @JoinColumn(referencedColumnName="id", nullable=false)
 	*/
 	private $tags;
 
 	public function __construct() {
-		$this->tags = new ArrayCollection;
+		$this->tags = new \Doctrine\Common\Collections\ArrayCollection();
 	}
 
 	public function getId(){

@@ -1,4 +1,4 @@
-<p class="breadcrumbs"><a href="/admin">Admin</a> &raquo;
+<p class="breadcrumbs"><a href="/admin/article">Admin</a> &raquo;
 <h1>Edit article</h1>
 
 {{#article}}
@@ -12,8 +12,14 @@
     <label for="image">Image</label>
     <input type="text" name="image" id="image" value="{{getImage}}">
 
-    <label for="author">author</label>
-    <select name="author" id="author">{{{authors}}}</select> 
+    <label for="author">Author</label>
+    <select name="author" id="author">{{{authors}}}</select>
+    <!--
+    {{#tags}}
+    <label for="tag">Tag</label>
+    <select name="tag" id="tag">{{{tags}}}</select>
+    {{/tags}}
+-->
 
     <label for="body">Body</label>
     <textarea name="body" id="body">{{{getBody}}}</textarea>
